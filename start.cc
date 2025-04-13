@@ -1,9 +1,10 @@
+// Modified start.cc file
 #include "raylib.h"
+#include "stomach.h" // Include stomach game header only
 #include <vector>
 #include <string>
-#include <cstdlib> // For system function
 
-// Credits screen
+// Credits screen remains the same
 void ShowCreditsScreen(int screenWidth, int screenHeight) {
     bool viewingCredits = true;
     Texture2D background = LoadTexture("bg_start.png");
@@ -30,7 +31,6 @@ void ShowCreditsScreen(int screenWidth, int screenHeight) {
         DrawText("Credits", screenWidth / 2 - MeasureText("Credits", headingSize) / 2, 100, headingSize, SKYBLUE);
         DrawText("Made by Team BBRF!", screenWidth / 2 - MeasureText("Made by Team BBRF!", bodySize) / 2, 150, bodySize, WHITE);
         DrawText("Hydrocloric Acid Escape and titlescreen by Tania Rivera", screenWidth / 2 - MeasureText("Hydrochloric Acid Escape and titlescreen by Tania Rivera", bodySize) / 2, 175, bodySize, WHITE);
-        DrawText("Esophagus Invaders by Lizbeth Arcos", screenWidth / 2 - MeasureText("Esophagus Invaders by Lizbeth Arcos", bodySize) / 2, 200, bodySize, WHITE);
         DrawText("Design and Assets by Jimena Hernandez", screenWidth / 2 - MeasureText("Design and Assets by Jimena Hernandez", bodySize) / 2, 225, bodySize, WHITE);
         DrawText("Royal Advising and Debugging by Jayden Chico", screenWidth / 2 - MeasureText("Royal Advising and Debugging by Jayden Chico", bodySize) / 2, 250, bodySize, WHITE);
         DrawText("Press [ENTER] or click to return to menu",
@@ -43,25 +43,19 @@ void ShowCreditsScreen(int screenWidth, int screenHeight) {
     UnloadTexture(background);
 }
 
-// Function to launch a game executable
-void LaunchGame(const char* executablePath, Texture2D& background) {
-    // Close the current window before launching the game
-    CloseWindow();
+// Function to run a game and handle return to menu
+void RunGame(int (*gameFunction)(), const char* windowTitle) {
+    // Save window state
+    Vector2 windowPosition = GetWindowPosition();
     
-    // Launch the specified executable and get return code
-    int result = 0;
-    #ifdef _WIN32
-        result = system(executablePath);
-    #else
-        result = system(executablePath);
-    #endif
+    // Call the game function (returns 1 if user wants to return to menu)
+    int result = gameFunction();
     
-    // Re-initialize the window when returned from the game
-    InitWindow(1280, 720, "Minigame Menu");
-    SetTargetFPS(60);
+    // Set window title back to menu title
+    SetWindowTitle("Minigame Menu");
     
-    // Reload the background texture
-    background = LoadTexture("bg_start.png");
+    // Optional: Restore window position if needed
+    SetWindowPosition(windowPosition.x, windowPosition.y);
 }
 
 int main() {
@@ -72,14 +66,8 @@ int main() {
     SetTargetFPS(60);
     Texture2D background = LoadTexture("bg_start.png");
 
-    std::vector<std::string> menuItems = { "Hydrocloric Acid Maze", "Esophagus Invaders", "Credits", "Exit" };
-    
-    // Paths to game executables
-    const char* stomachGamePath = "./stomach"; // For Linux/Mac
-    // const char* stomachGamePath = "stomach.exe"; // For Windows
-    
-    const char* esophagusGamePath = "./esophagus"; // Placeholder for second game
-    // const char* esophagusGamePath = "esophagus.exe"; // For Windows
+    // Modified menu items - removed Esophagus Invaders
+    std::vector<std::string> menuItems = { "Hydrocloric Acid Maze", "Credits", "Exit" };
 
     float baseY = 200.0f;
     float spacing = 70.0f;
@@ -127,9 +115,7 @@ int main() {
                 } else if (menuItems[i] == "Credits") {
                     ShowCreditsScreen(screenWidth, screenHeight);
                 } else if (menuItems[i] == "Hydrocloric Acid Maze") {
-                    LaunchGame(stomachGamePath, background);
-                } else if (menuItems[i] == "Esophagus Invaders") {
-                    LaunchGame(esophagusGamePath, background);
+                    RunGame(runStomachGame, "Stomach Maze Game");
                 }
             }
         }
