@@ -1,6 +1,5 @@
-// Modified stomach.cc file to be callable as a function
 #include "raylib.h"
-#include "stomach.h" // Include the header file
+#include "stomach.h"
 #include <vector>
 #include <algorithm>
 #include <cstdlib>
@@ -8,7 +7,7 @@
 #include <cmath>
 #include <string>
 
-// Constants and global variables remain the same
+// Constants and global variables
 const int MAZE_COLS = 32;
 const int MAZE_ROWS = 18;
 const int SCREEN_WIDTH = 1280;
@@ -25,7 +24,6 @@ Direction OPPOSITE[] = {BOTTOM, LEFT, TOP, RIGHT};
 int maze[MAZE_ROWS][MAZE_COLS] = {0};
 bool visited[MAZE_ROWS][MAZE_COLS] = {false};
 
-// Game state enum remains the same
 enum GameState {
     GAMEPLAY,
     GAME_OVER,
@@ -33,7 +31,6 @@ enum GameState {
     RETURN_TO_MENU
 };
 
-// Structures remain the same
 struct Collectible {
     Vector2 position;
     bool active;
@@ -49,7 +46,6 @@ struct Enemy {
     bool movingRight;
 };
 
-// Helper functions remain the same
 void generateMaze(int maze[MAZE_ROWS][MAZE_COLS], bool visited[MAZE_ROWS][MAZE_COLS], int x, int y) {
     visited[y][x] = true;
     std::vector<int> dirs = {0, 1, 2, 3};
@@ -131,7 +127,7 @@ void moveEnemyPacing(Enemy &enemy, float delta) {
     enemy.position.y = ClampValue(enemy.position.y, TILE_SIZE/2.0f, SCREEN_HEIGHT - TILE_SIZE/2.0f);
 }
 
-// Main game function (renamed from main() to runStomachGame())
+// Main game function
 int runStomachGame() {
     
     srand(time(NULL));
@@ -164,7 +160,7 @@ int runStomachGame() {
     PlayMusicStream(music);
 
     // Load textures
-    Texture2D background = LoadTexture("stomach.png");
+    Texture2D background = LoadTexture("stomach_1.png");
     Texture2D playerSprite = LoadTexture("skin_cha_main_1.png");
     Texture2D collectibleSprite = LoadTexture("collectible.png");
     Texture2D enemySprite = LoadTexture("enemy.png");
@@ -235,7 +231,6 @@ int runStomachGame() {
             return 1; // Return code 1 to indicate "return to menu"
         }
 
-        // UPDATE LOGIC based on GameState
         if (currentState == GAMEPLAY) {
             // Player Input & Movement
             Vector2 oldPos = playerPos;
