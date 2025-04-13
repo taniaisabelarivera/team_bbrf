@@ -1,10 +1,9 @@
-// Modified start.cc file
 #include "raylib.h"
-#include "stomach.h" // Include stomach game header only
+#include "stomach.h"
+#include "helloworld.cc"
 #include <vector>
 #include <string>
 
-// Credits screen remains the same
 void ShowCreditsScreen(int screenWidth, int screenHeight) {
     bool viewingCredits = true;
     Texture2D background = LoadTexture("bg_start.png");
@@ -54,7 +53,7 @@ void RunGame(int (*gameFunction)(), const char* windowTitle) {
     // Set window title back to menu title
     SetWindowTitle("Minigame Menu");
     
-    // Optional: Restore window position if needed
+    // Restore window position if needed
     SetWindowPosition(windowPosition.x, windowPosition.y);
 }
 
@@ -66,8 +65,7 @@ int main() {
     SetTargetFPS(60);
     Texture2D background = LoadTexture("bg_start.png");
 
-    // Modified menu items - removed Esophagus Invaders
-    std::vector<std::string> menuItems = { "Hydrocloric Acid Maze", "Credits", "Exit" };
+    std::vector<std::string> menuItems = { "Hydrocloric Acid Maze", "Esophagus Invaders", "Credits", "Exit" };
 
     float baseY = 200.0f;
     float spacing = 70.0f;
@@ -116,6 +114,8 @@ int main() {
                     ShowCreditsScreen(screenWidth, screenHeight);
                 } else if (menuItems[i] == "Hydrocloric Acid Maze") {
                     RunGame(runStomachGame, "Stomach Maze Game");
+                } else if (menuItems[i] == "Esophagus Invaders") {
+                    RunGame(mainSpace, "Space Invaders");
                 }
             }
         }

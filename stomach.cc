@@ -160,7 +160,7 @@ int runStomachGame() {
     PlayMusicStream(music);
 
     // Load textures
-    Texture2D background = LoadTexture("stomach_1.png");
+    Texture2D background = LoadTexture("stomach.png");
     Texture2D playerSprite = LoadTexture("skin_cha_main_1.png");
     Texture2D collectibleSprite = LoadTexture("collectible.png");
     Texture2D enemySprite = LoadTexture("enemy.png");
