@@ -30,7 +30,6 @@ void ShowCreditsScreen(int screenWidth, int screenHeight) {
         DrawText("Credits", screenWidth / 2 - MeasureText("Credits", headingSize) / 2, 100, headingSize, SKYBLUE);
         DrawText("Made by Team BBRF!", screenWidth / 2 - MeasureText("Made by Team BBRF!", bodySize) / 2, 150, bodySize, WHITE);
         DrawText("Hydrocloric Acid Escape and titlescreen by Tania Rivera", screenWidth / 2 - MeasureText("Hydrochloric Acid Escape and titlescreen by Tania Rivera", bodySize) / 2, 175, bodySize, WHITE);
-        DrawText("Design and Assets by Jimena Hernandez", screenWidth / 2 - MeasureText("Design and Assets by Jimena Hernandez", bodySize) / 2, 225, bodySize, WHITE);
         DrawText("Royal Advising and Debugging by Jayden Chico", screenWidth / 2 - MeasureText("Royal Advising and Debugging by Jayden Chico", bodySize) / 2, 250, bodySize, WHITE);
         DrawText("Press [ENTER] or click to return to menu",
                  screenWidth / 2 - MeasureText("Press [ENTER] or click to return to menu", hintSize) / 2,
