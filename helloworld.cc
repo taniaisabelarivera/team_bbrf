@@ -8,7 +8,7 @@ int main() {
     const int screen_height = 720;
     InitWindow(screen_width, screen_height, "Chikawa");
     SetTargetFPS(60);
-    Chikawa chikawa = Chikawa();
+    
     Stomach stomach = Stomach();
     while(WindowShouldClose() == false)
     {
@@ -17,7 +17,6 @@ int main() {
         ClearBackground(RED);
        
         stomach.Draw();
-        stomach.Movement();
         stomach.Update();
         //chikawa.Draw();
         EndDrawing();

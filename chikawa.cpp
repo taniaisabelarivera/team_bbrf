@@ -2,7 +2,7 @@
 class Chikawa {
     public:
     Texture2D texture;
-    Vector2 position = {150, (float)GetScreenHeight() - 350};
+    Vector2 position = {(float)GetScreenWidth() / 2 - 100, (float)GetScreenHeight() - 200};
     float scale = 0.3f;
     Chikawa()
     {
