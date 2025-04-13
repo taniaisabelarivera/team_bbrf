@@ -18,7 +18,7 @@ int main() {
        
         stomach.Draw();
         stomach.Movement();
-        stomach.CheckCollisionWithEdges();
+        stomach.Update();
         //chikawa.Draw();
         EndDrawing();
     }
